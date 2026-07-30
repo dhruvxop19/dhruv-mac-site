@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getAllNotes } from "@/lib/content";
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL!;
+import { SITE_URL } from "@/lib/site-url";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const notes = getAllNotes();

@@ -3,12 +3,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ConvexClientProvider } from "@/app/_components/convex-provider";
 import { getToken } from "@/lib/auth-server";
+import { SITE_URL } from "@/lib/site-url";
 import Script from "next/script";
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL
-if (!SITE_URL) {
-  throw new Error("NEXT_PUBLIC_SITE_URL is not set");
-}
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
