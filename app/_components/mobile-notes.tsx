@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import { MDXRemote } from "next-mdx-remote";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
+import { isConvexConfigured } from "@/lib/convex-config";
 import { formatDateLabel, formatUpdatedAtLabel } from "@/lib/date-time";
 import {
   getGroupedNotesForFolder,
@@ -88,7 +89,7 @@ export function MobileNotes({ notesData, selectedNoteSlug, onNoteSelect }: Mobil
   const viewingNote = viewingSlug ? notesData.notesBySlug[viewingSlug] ?? null : null;
 
   // Query guestbook to get the latest comment date for shared notes
-  const guestbookMessages = useQuery(api.guestbook.list);
+  const guestbookMessages = useQuery(api.guestbook.list, isConvexConfigured ? {} : "skip");
   const latestCommentDate = useMemo(() => {
     if (!guestbookMessages?.length) return null;
     return new Date(guestbookMessages[0]._creationTime);

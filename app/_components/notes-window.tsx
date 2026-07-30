@@ -7,6 +7,7 @@ import { api } from "@/convex/_generated/api";
 import { useDraggableWindow } from "@/lib/use-draggable-window";
 import { getDesktopWindowBounds } from "@/lib/desktop-window";
 import { formatDateLabel, formatUpdatedAtLabel } from "@/lib/date-time";
+import { isConvexConfigured } from "@/lib/convex-config";
 import {
   getFolderById,
   getGroupedNotesForFolder,
@@ -106,7 +107,7 @@ export function NotesWindow({
   });
 
   // Query guestbook to get the latest comment date for shared notes
-  const guestbookMessages = useQuery(api.guestbook.list);
+  const guestbookMessages = useQuery(api.guestbook.list, isConvexConfigured ? {} : "skip");
   const latestCommentDate = useMemo(() => {
     if (!guestbookMessages?.length) return null;
     return new Date(guestbookMessages[0]._creationTime);

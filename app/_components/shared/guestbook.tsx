@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useQuery, useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { authClient } from "@/lib/auth-client";
+import { isConvexConfigured } from "@/lib/convex-config";
 import { GoogleG } from "./icons";
 
 interface GuestbookProps {
@@ -22,6 +23,22 @@ export function Guestbook({ styles }: GuestbookProps) {
   const [commentText, setCommentText] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  if (!isConvexConfigured) {
+    return (
+      <div className={styles.guestBook}>
+        <div className={styles.guestBookDivider} />
+        <div className={styles.commentRow}>
+          <span className={styles.commentAvatarEmpty} aria-hidden />
+          <div className={styles.commentBubble}>
+            <span className={styles.editorBody ?? styles.commentText ?? ""}>
+              Guestbook is offline for now.
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const { data: session } = authClient.useSession();
   const messages = useQuery(api.guestbook.list);
