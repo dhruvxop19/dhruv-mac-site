@@ -164,8 +164,6 @@ export interface ProjectEntry {
   name: string;
   description: string;
   tech: string[];
-  url?: string;
-  github?: string;
   dateModified: string;
   status: "active" | "archived" | "wip";
 }
@@ -175,7 +173,6 @@ const projects: ProjectEntry[] = [
     name: "how-to-get-rich-final-final",
     description: "Definitely the last final version of the master plan",
     tech: ["Notion", "Coffee", "Delusion"],
-    github: "https://github.com/dhruvxop19",
     dateModified: "Today at 12:14 PM",
     status: "wip",
   },
@@ -183,7 +180,6 @@ const projects: ProjectEntry[] = [
     name: "yc-application-v47",
     description: "Tiny edits that somehow changed everything",
     tech: ["Google Docs", "Anxiety", "Hope"],
-    github: "https://github.com/dhruvxop19",
     dateModified: "Today at 11:59 AM",
     status: "active",
   },
@@ -191,7 +187,6 @@ const projects: ProjectEntry[] = [
     name: "cold-dms-that-worked",
     description: "Screenshots kept for scientific purposes",
     tech: ["X", "LinkedIn", "Shamelessness"],
-    github: "https://github.com/dhruvxop19",
     dateModified: "Yesterday at 2:27 PM",
     status: "active",
   },
@@ -199,7 +194,6 @@ const projects: ProjectEntry[] = [
     name: "fortune-500-vibes",
     description: "Enterprise folder with startup sleep schedule",
     tech: ["CRM", "Calendly", "Adrenaline"],
-    github: "https://github.com/dhruvxop19",
     dateModified: "Yesterday at 12:45 PM",
     status: "wip",
   },
@@ -207,7 +201,6 @@ const projects: ProjectEntry[] = [
     name: "ideas-i-will-build-someday",
     description: "A museum of suspiciously good domain names",
     tech: ["README", "Domains", "Copium"],
-    github: "https://github.com/dhruvxop19",
     dateModified: "Last opened in a dream",
     status: "archived",
   },
@@ -220,7 +213,7 @@ const projects: ProjectEntry[] = [
 function buildProjectsDir(): FSDirectory {
   const projectsPath = homePath("Documents", "Projects");
   const children: FSNode[] = projects.map((p) =>
-    dir(p.name, projectsPath, [], p.dateModified, p.github),
+    dir(p.name, projectsPath, [], p.dateModified),
   );
   return dir("Projects", homePath("Documents"), children);
 }
