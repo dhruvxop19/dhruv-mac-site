@@ -37,6 +37,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.5,
     },
+    {
+      url: absoluteUrl("/about.md"),
+      lastModified: new Date("2026-07-31T00:00:00+05:30"),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: absoluteUrl("/profile.json"),
+      lastModified: new Date("2026-07-31T00:00:00+05:30"),
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    {
+      url: absoluteUrl("/llms.txt"),
+      lastModified: new Date("2026-07-31T00:00:00+05:30"),
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
     ...noteUrls,
   ];
 }

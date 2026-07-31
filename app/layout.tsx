@@ -127,6 +127,10 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="author" href={absoluteUrl("/about.md")} />
+        <link rel="me" href="https://x.com/StackDhruv" />
+        <link rel="me" href="https://www.linkedin.com/in/dhruvieiei/" />
+        <link rel="me" href="https://github.com/dhruvxop19" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
