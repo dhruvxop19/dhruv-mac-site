@@ -1,15 +1,15 @@
 import type { MetadataRoute } from "next";
 import { getAllNotes } from "@/lib/content";
-import { SITE_URL } from "@/lib/site-url";
+import { absoluteUrl, SITE_URL } from "@/lib/site-url";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const notes = getAllNotes();
 
   const noteUrls: MetadataRoute.Sitemap = notes.map((note) => ({
-    url: `${SITE_URL}/notes/${note.slug}`,
+    url: absoluteUrl(`/notes/${note.slug}`),
     lastModified: new Date(note.frontmatter.updatedAt ?? note.frontmatter.date),
     changeFrequency: "monthly",
-    priority: 0.7,
+    priority: note.slug === "about-me" ? 1 : 0.7,
   }));
 
   return [
@@ -17,22 +17,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: SITE_URL,
       lastModified: new Date(),
       changeFrequency: "weekly",
-      priority: 1,
+      priority: 0.9,
     },
     {
-      url: `${SITE_URL}/notes`,
+      url: absoluteUrl("/notes"),
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.8,
     },
     {
-      url: `${SITE_URL}/music`,
+      url: absoluteUrl("/music"),
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.5,
     },
     {
-      url: `${SITE_URL}/tv`,
+      url: absoluteUrl("/tv"),
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.5,

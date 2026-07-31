@@ -132,7 +132,7 @@ export const useDesktopStore = create<DesktopStore>((set, get) => ({
     // Auto-open notes on root path
     if (initialPathname === "/") {
       const defaultSlug =
-        notesData.defaultNoteSlug ?? "opendictate-readme";
+        notesData.defaultNoteSlug ?? "about-me";
       set({
         selectedNoteSlug: defaultSlug,
         windowStack: activateInStack([], "notes"),
