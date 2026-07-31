@@ -144,7 +144,7 @@ export function buildNotesData(
   }
 
   const defaultNoteSlug =
-    notesBySlug["opendictate-readme"]?.slug ??
+    notesBySlug["about-me"]?.slug ??
     folders.find((f) => f.id === DEFAULT_FOLDER_ID)?.noteSlugs[0] ??
     null;
 
