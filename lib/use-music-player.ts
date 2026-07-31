@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { songs, songById, type Song } from "@/lib/music-data";
+import { frequentlyPlayedIds, songs, songById, type Song } from "@/lib/music-data";
 
 export interface PlayerState {
   currentSong: Song | null;
@@ -26,16 +26,19 @@ export interface PlayerControls {
 
 export type MusicPlayer = PlayerState & PlayerControls;
 
-const IK_TARFA_ID = "1835109935";
+const DEFAULT_SONG_ID = frequentlyPlayedIds[0] ?? "1471704175";
+const DEFAULT_QUEUE = frequentlyPlayedIds
+  .map((id) => songById[id])
+  .filter(Boolean) as Song[];
 
 const INITIAL_STATE: PlayerState = {
-  currentSong: songById[IK_TARFA_ID] ?? null,
+  currentSong: songById[DEFAULT_SONG_ID] ?? null,
   isPlaying: false,
   currentTime: 0,
   duration: 0,
   volume: 0.8,
-  queue: songs,
-  queueIndex: songs.findIndex((s) => s.id === IK_TARFA_ID),
+  queue: DEFAULT_QUEUE.length > 0 ? DEFAULT_QUEUE : songs,
+  queueIndex: Math.max(0, DEFAULT_QUEUE.findIndex((s) => s.id === DEFAULT_SONG_ID)),
 };
 
 /**
