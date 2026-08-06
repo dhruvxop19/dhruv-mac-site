@@ -465,6 +465,12 @@
   margin: 0 0 18px;
 }
 
+.editorBody img[src="/reddit-marketing-playbook.png"] {
+  width: min(100%, 760px) !important;
+  border-radius: 12px;
+  margin: 4px 0 22px;
+}
+
 .inlineLink {
   color: #e2a727;
   text-decoration: underline;

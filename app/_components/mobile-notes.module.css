@@ -301,6 +301,12 @@
   margin: 0 0 18px;
 }
 
+.mdxBody img[src="/reddit-marketing-playbook.png"] {
+  width: 100% !important;
+  border-radius: 12px;
+  margin: 4px 0 22px;
+}
+
 .mdxH1 {
   margin: 0 0 14px;
   color: #363636;
